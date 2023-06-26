@@ -1,0 +1,126 @@
+-- Main Concepts, Clauses, Functions, Operators and features from psql:
+
+-- 1. Queries Data :
+SELECT
+AS -- Aliases
+ORDER BY DESC | ASC
+SELECT DISTINCT(column_name)
+-- Selecting, Re-aliasing(AKA rename), sorting and duplicate removal clauses;
+
+-- 2. Filters Data :
+WHERE
+LIMIT OFFSET
+FETCH
+IN, AND, OR
+BETWEEN
+LIKE '%_'
+IS, NOT, NULL (<>, =, !=)
+-- Conditional, limited, batched, listed, ranged, patterning or nullish clauses;
+
+-- 3. Joins tables, views and queries :
+JOIN, LEFT JOIN, RIGHT JOIN, INNER JOIN, FULL OUTER JOIN
+JOIN table_name alias -- Aliases(shortening) for Joins
+SELF JOIN
+CROSS JOIN
+NATURAL JOIN
+-- In|off sets, re-aliasing, self-comp., graph-based(X-Y) and strictly related joins;
+
+-- 4. Groups Data :
+GROUP BY
+HAVING -- Only INTEGER
+-- Aggregating records/rows into groups and aplying (numeric) conditionals to it;
+
+-- 5. Sets operations :
+UNION
+INTERSECT
+EXCEPT -- Only 'A' out-inner subset
+-- Full outer, Inner and Left 'only' liked joins based on set-results (outputs/views);
+
+-- 6. Groups, Cubes and Rollup :
+CUBE
+ROLLUP
+-- Generating GROUP SETS for reporting, combinations and totals-subTotals;
+
+-- 7. Subqueries :
+ANY 
+ALL
+EXISTS
+-- Nested querying(Subquery), set<>listed criterias and isTrue validation;
+
+-- 8. Table Expressions :
+CTE
+Recursive CTEs
+-- Common Table Expressions and Recursive querying;
+
+-- 9. Modifies Data (DDL) :
+INSERT -- Single/Multi rows
+UPDATE
+UPDATE JOIN
+DELETE (ALTER DROP)
+UPSERT
+-- Full, partial and joined feeding upon records. Also deleting and re-updt/insrt;
+
+-- 10. Transacts :
+TRAN -- Transactions
+BEGIN
+COMMIT
+ROLLBACK
+-- Managing, starting, source-controling and fallback to transaction operations;
+
+-- 11. Imports & Exports :
+COPY -- for|from CSV
+-- Fetching-Feeding data between CSV and Tables;
+
+-- 12. Manages Tables(DDL) :
+DATA TYPE
+CREATE TABLE 
+SELECT INTO AND SELECT TABLE AS -- Create from views/outputs
+SERIAL
+SEQUENCE
+IDENTITY
+ALTER TABLE
+RENAME TABLE
+ADD, DROP
+TRUNCATE
+COPY TABLE
+-- Handling creation-deletion, data-type various kinds of listing for tables<>columns;
+
+-- 13. Constraints :
+PRIMARY KEY
+FOREIGN KEY
+CHECK -- Conditional boolean validation4columns
+UNIQUE
+NOT NULL
+-- Strictly defined identifiers, validation and exclusive|unique values;
+
+-- 14. Data-Typing :
+BOOLEAN
+CHAR, VARCHAR, TEXT
+NUMERIC
+INT, INTEGER (SMALLINT, BIGINT)
+DATE, TIME, TIMESTAMP
+INTERVAL
+UUID
+ARRAY
+HSTORE -- key-value (single registry)
+JSON
+CREATE DOMAIN | TYPE
+-- Classical programming, database-oriented and advanced crossed data-types;
+
+-- 15. Conditional Exp & Op :
+CASE (LIKE, THEN, ELSE)
+COALESCE
+NULLIF
+CAST -- Converts Data-type
+-- Highly structured conditionals, null-notNull return and data-type parsing;
+
+-- 16. Utilities :
+PSQL COMMANDS
+-- Commonly used PostgreSQL commands;
+
+-- 17. Recipes :
+EXPLAIN -- 'Blueprinting a query'
+-- Compare tables, delete duplicates, generating random num and PostgreSQL vs. MySQL;
+
+-- 18. Advanced :
+-- stored procedures, indexes, views, triggers, and database administrations;
