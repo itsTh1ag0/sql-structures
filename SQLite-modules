@@ -46,4 +46,71 @@ LIMIT 20 OFFSET 5;
 -- LIMIT is a constraining fetch clause
 -- OFFSET sets  the initial removal of indexes(in-length) to LIMIT set-results
 
+-- Organizing | Sorting data : ORDER BY, DESC, ASC
+SELECT
+p.state_code,
+p.first_name AS sorted_name
+FROM
+people p
+ORDER BY p.first_name DESC, p.state_code ASC;
+-- It's a composed clause to sort records/registries on defined columns
+-- Additional keywords include DESC(descendant) and ASC(ascendant)
+-- 'Default' mode (w/out keywords) is ASC
+-- Multi-dimensional sorting available through added DESC|ASC, comma(,) separated
+
+-- Researching over-data(functions) : LENGTH(), COUNT(), AVG(), DISTINCT()
+SELECT
+DISTINCT(first_name),
+LENGTH(first_name),
+COUNT(company)
+FROM
+people;
+-- Parentheses wraping clauses(applied on columns/values) are 'functions' within SQL
+-- Display only first matching of each unique record by using DISTINCT()
+-- An added (numbered) column for selected dimension records upon LENGTH()
+-- Another numbered column, this time by COUNT() for equal occurencies
+
+
+-- Crossing data(Joins) : JOIN, INNER, LEFT-RIGHT, OUTER, CROSS
+SELECT
+ppl.first_name,
+st.region
+FROM
+people ppl
+JOIN states st ON ppl.state_code=st.state_abbrev;
+WHERE state_code=state_abbrev -- Implicit mode
+-- Asking for records across multiple tables via INNER|JOIN clause (common-registry)
+-- To add comparison expressions use the 'ON' keyword
+-- Possible (but not recommendable) to join without table+wildcard ('table_name.')
+-- There's also the 'implicitly'(WHERE instead of JOIN) against 'explicitly'
+-- Re-aliasing available for joins (whitout the AS op.) i.e 'table tb'
+
+SELECT
+DISTINCT(p.state_code),
+s.state_abbrev
+FROM
+people p
+RIGHT JOIN states s ON p.state_code=s.state_abbrev
+ORDER BY s.state_abbrev ASC;
+-- Sided joins (LEFT<>RIGHT) can be used with|out the added clause-key 'OUTER'
+-- 'From' refers the 'left' table and 'Join' the right ones
+-- Registries from the opposite 'Outer' data set non-present are outputed as NULL
+-- Without explicit sorting(ORDER BY), it will be render based on left-table
+
+
+-- Aggregating & filtering records : GROUB BY, HAVING
+SELECT
+state_code,
+quiz_points, 
+COUNT(quiz_points) AS count
+FROM
+people
+GROUP BY
+state_code, quiz_points
+HAVING
+count > 2;
+-- Grouping 'selected' registries across (a common denominator) via GROUP BY
+-- Not strictly (but normally) related alongside COUNT() fnc
+-- Additional condition criteria is added by the HAVING clause (integers only)
+-- Double-dimension groups are available (same as with ORDER BY)
 
