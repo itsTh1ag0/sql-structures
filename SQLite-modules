@@ -1,0 +1,49 @@
+/* 
+SELECT snippes, notes, statements 
+FROM linkedin_course
+WHERE Link IS 'https://www.linkedin.com/learning/exams/summative/courses/learning-sql-programming-8382385'
+*/
+------------------------
+
+-- Selecting & Filtering/Conditoning : SELECT, FROM, WHERE
+WHERE 'criteria' OR 'conditional'
+
+SELECT
+*
+FROM
+people
+WHERE state_code='CA'; -- predicates can be strict or expressions
+-- string predicates are 'case-sensitive' (it can be set on/off at DDL-DB DBMS schema)
+
+-- Multipe Criterias : OR, AND, IS, NOT, !=, <>, ()
+SELECT
+first_name,
+last_name AS surname
+FROM
+people
+WHERE
+(state_code <> 'NY' AND shirt_or_hat!='shirt')
+OR city IS NOT 'Los Angeles'; 
+-- logical 'and'(&&) y 'or'(||) op. are textual
+-- comparison 'equalsTo'(=) op. can be textual (as 'IS')
+-- expressions predicates(...=...) can or not be 'whitespaced' 
+-- can be used different(!= & <>) ops. within expressions
+-- brackets (parentheses) can be used for 'precedence'
+
+-- Broadening | Limiting responses : '%..', '..%', 'B_%..'
+SELECT
+*
+FROM
+people
+WHERE
+company LIKE 'T%a' OR last_name LIKE '%y_n' AND middle_name LIKE '%TE%'
+LIMIT 20 OFFSET 5;
+-- The module(%) op. inside predicate strgs indicates a portion of fetching to ignore
+-- Besides equalTo(=) & IS there's the LIKE comparison op. (it means 'close to it')
+-- The percentage(%) op. can only be used with LIKE comp. op. (so it seems)
+-- Partial retrievals are available with '%a%'(any) & '%a_n'(between)
+-- Searched values aren't case-sensitive (but can be via DDL) @constraints
+-- LIMIT is a constraining fetch clause
+-- OFFSET sets  the initial removal of indexes(in-length) to LIMIT set-results
+
+
