@@ -114,3 +114,15 @@ count > 2;
 -- Additional condition criteria is added by the HAVING clause (integers only)
 -- Double-dimension groups are available (same as with ORDER BY)
 
+-- Data typing : VARCHAR, INT, NULL, DATE, TIME, BOOLEAN ...
+DATA TYPE
+BINARY, BINARY LARGE OBJECT, BINARY VARYING
+BOOLEAN
+DATE, INTERVAL, TIME, TIMESTAMP
+BIGINT, DECIMAL, DOUBLE PRECISION, FLOAT, INTEGER, INT, NUMERIC, SMALLINT, REAL
+CHARACTER, CHARACTER LARGE OBJECT, VARCHAR, NCHAR, NCHAR VARYING, CHAR
+-- It follows the same principles of programming (i.e numeric, textual, binary etc...)
+-- Specific data-types can store structured data (JSON, key-value) and files
+-- Compatibility and variety changes by DBMS & SQL accordingly
+
+
