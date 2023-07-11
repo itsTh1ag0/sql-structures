@@ -125,4 +125,84 @@ CHARACTER, CHARACTER LARGE OBJECT, VARCHAR, NCHAR, NCHAR VARYING, CHAR
 -- Specific data-types can store structured data (JSON, key-value) and files
 -- Compatibility and variety changes by DBMS & SQL accordingly
 
+-- Mathematics : = + - * / %, <> < > =< >= !=, SUM(), AVG(), MAX(), MIN()
+SELECT
+team, 
+COUNT(*) AS num_members,
+SUM(quiz_points) AS points,
+SUM(quiz_points)/COUNT(*) OR AVG(quiz_points) -- second gives BFP,
+MAX(quiz_points) - MIN(quiz_points)
+FROM
+people
+GROUP BY 
+team;
+-- Math operations are (mostly) run at the 'select' level (values)
+-- Besides sum, avg and count there're others functions such as MAX() and MIN()
+-- Hard-coding functions (with Math combinations) doesn't provide float precision
+
+-- Nested querying : Subqueries
+SELECT 
+*
+FROM 
+people
+WHERE state_code=(SELECT
+                    state_abbrev
+                    FROM
+                    states
+                    WHERE state_name='Minnesota');
+-- Subquery consists of querying from/within previous (inner) resulting views
+-- Can be appended as WHERE|FROM expression predicates
+-- Often used as a modular value for expressions
+
+-- Transforms strg data : UPPER(), LOWER(), LTRIM(), REPLACE(), SUBSTRING(), CAST()
+REPLACE(), UPPER(), LOWER(), LTRIM(), SUBSTRING(mySQL), SUBSTR(4SQLite), CAST()
+SELECT
+UPPER(first_name), LOWER(last_name),
+TRIM(state_code), LTRIM(quiz_points),
+SUBSTRING(company, 2, 5), SUBSTR(company, -5), --length-based
+REPLACE(shirt_or_hat, 'hat', "hats"), -- case-sensitive & doubled-quotes
+CAST(age AS CHAR)
+FROM
+people;
+-- Camel-case manipulation (VARCHAR-strings) runs through UPPER() and LOWER() fnc
+-- Slicing is applied throughout TEXT-strings via SUBSTRING() or SUBSTR(SQLiteOnly)
+-- For parsing based operations there's CAST()
+
+-- Re-aliases fields : AS, table_name tbn
+SELECT
+p.first_name AS 'first name',
+UPPER(p.last_name) AS surname
+FROM
+people p
+WHERE surname='Martin'; -- using alias predicate
+-- Columns/fields can be renamed using the AS key-clause
+-- Table names also just by adding a white-space+newname (no keyword)
+-- Aliases are referred within future clauses predicates/expressions
+-- Re-aliased tablenames (should) be pre-referred with the '.' wildcard
+
+-- Adds data to tables : INSERT-INTO(), VALUES()
+INSERT INTO 
+company (register_name, team_name, number_members)
+VALUES 
+('Microsoft', 'Red Monsters', 12),
+('Apple', 'Cup Dinos', 8),
+('Meta', 'Zuken Warriors', NULL);
+-- For adding values there're the clause-keyword 'insert-into'
+-- A inner clause is used (values) to specify the records/registries of input
+-- Multi (listed) values insertion present in values clause (can't be 'undefined')
+
+-- Modifies data : UPDATE, SET, WHERE
+UPDATE tablename
+SET field1='value', field2=999
+WHERE condition='value';
+-- Updating is made with UPDATE-SET clauses combination (where optional)
+-- update-set are 'whitespaced' clauses (agains insert-into-values 'parenthesed')
+-- Absence of where clause will cause the update to be set on all records
+
+-- Deletes data: DELETE, WHERE
+DELETE FROM `table name`
+WHERE condition='value' OR condition IS range_of_values;
+-- Another whitespaced clause is delete
+-- It doesn't receive params, parentheses or predicates (just the path 'FROM')
+-- Deletes all the registries/records matching a given condition (where's criteria)
 
