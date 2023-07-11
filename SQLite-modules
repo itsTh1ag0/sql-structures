@@ -206,3 +206,17 @@ WHERE condition='value' OR condition IS range_of_values;
 -- It doesn't receive params, parentheses or predicates (just the path 'FROM')
 -- Deletes all the registries/records matching a given condition (where's criteria)
 
+-- Final notes : Avoiding (Common SQL mistakes) 
+/*
+ - Typos and syntax errors: read the error and break down (testing) the statement
+ - Text values should be in single quotation marks(')
+ - Field names with spaces (allowed *not recommended) need to be in backticks(`)
+ - Keep a data 'journal' (documentation)
+ - Copy and paste in 'plain text' rather than formatted text
+ - Smart/Curly quotes(‘, “), used for textual apps, cause problems
+ - Share SQL statements as 'plain-text.sql' files or attachments instead chat/email directly
+ - To find 'null' values, use IS NULL | IS NOT NULL keywords instead of equality op. (=, !=, <>)
+ - Test matching conditions(criterias) *before* using them for dangerous clauses like UPDATE and DELETE
+ - Most database software(DMBS) will run all the SQL statements in a given window at once; --> select or switch from files
+*/
+
